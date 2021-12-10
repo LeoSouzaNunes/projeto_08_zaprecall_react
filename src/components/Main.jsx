@@ -4,7 +4,7 @@ import Result from './Result'
 export default function Main() {
 
     return (
-        <main className="main hidden">
+        <main className="main">
             <header className="logo-corner">
             </header>
             <Card />

@@ -30,13 +30,13 @@ export default function Card() {
     ]
 
     return (
-        <div className="card hidden">
-            <div className="card-front hidden">
+        <div className="card">
+            <div className="card-front">
                 <div className="card-counter">1/8</div>
                 <span className="card-question">O que é JSX?</span>
                 <img src={turn} alt="turn card icon" />
             </div>
-            <div className="card-back">
+            <div className="card-back hidden">
                 <div className="top-card-back">
                     <span className="card-back-question">O que é JSX?</span>
                     <div className="card-back-counter">1/8</div>
