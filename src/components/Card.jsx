@@ -1,7 +1,7 @@
 import { useState } from 'react/cjs/react.development'
 import turn from '../assets/turn.png'
 
-export default function Card() {
+export default function Card(props) {
 
     const [flipCard, setFlipCard] = useState(false)
     const [border, setBorder] = useState('')
@@ -28,6 +28,11 @@ export default function Card() {
         setFlipCard(false)
         setBorder('')
         setStatus(false)
+        if (cardData === deck.length - 1) {
+            console.log("Saiu")
+            props.setResult(true)
+            setCardData(0)
+        }
         setCardData(cardData + 1)
     }
 
