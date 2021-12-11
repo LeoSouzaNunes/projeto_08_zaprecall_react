@@ -14,6 +14,7 @@ export default function Card(props) {
         if (clickedButtonColor[1] === "black") {
             setBorder("black-border");
         } else if (clickedButtonColor[1] === "red") {
+            props.setResultStatus(false)
             setBorder("red-border");
         } else if (clickedButtonColor[1] === "green") {
             setBorder("green-border");
@@ -29,7 +30,6 @@ export default function Card(props) {
         setBorder('')
         setStatus(false)
         if (cardData === deck.length - 1) {
-            console.log("Saiu")
             props.setResult(true)
             setCardData(0)
         }
