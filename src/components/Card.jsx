@@ -1,6 +1,27 @@
+import { useState } from 'react/cjs/react.development'
 import turn from '../assets/turn.png'
 
 export default function Card() {
+
+    const [flipCard, setFlipCard] = useState(false)
+    const [border, setBorder] = useState('')
+    const [status, setStatus] = useState(false)
+
+    function handleBorder(event) {
+        let clickedButtonColor = event.target.className.split(' ')
+
+        if (clickedButtonColor[1] === "black") {
+            setBorder("black-border");
+        } else if (clickedButtonColor[1] === "red") {
+            setBorder("red-border");
+        } else if (clickedButtonColor[1] === "green") {
+            setBorder("green-border");
+        } else if (clickedButtonColor[1] === "yellow") {
+            setBorder("yellow-border");
+        }
+
+        setStatus(true)
+    }
 
     const deck = [{
         question: "O que é JSX?",
@@ -30,25 +51,35 @@ export default function Card() {
     ]
 
     return (
-        <div className="card">
-            <div className="card-front">
-                <div className="card-counter">1/8</div>
-                <span className="card-question">O que é JSX?</span>
-                <img src={turn} alt="turn card icon" />
-            </div>
-            <div className="card-back hidden">
-                <div className="top-card-back">
-                    <span className="card-back-question">O que é JSX?</span>
-                    <div className="card-back-counter">1/8</div>
-                </div>
-                <p className="card-back-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non ullamcorper at quis eu. Malesuada iaculis viverra a tincidunt arcu nullam. Orci tortor arcu placerat id sit et. Elementum in erat cras tortor at auctor diam.</p>
-                <div className="buttons-back">
-                    <button className="button-back black-border">Aprendi agora</button>
-                    <button className="button-back red-border">Não lembrei</button>
-                    <button className="button-back green-border">Lembrei com esforço</button>
-                    <button className="button-back yellow-border">Zap!</button>
-                </div>
-            </div>
+        <div className={`card ${border}`}>
+            {flipCard === false ?
+                (<div className="card-front">
+                    <div className="card-counter">0/{deck.length}</div>
+                    <span className="card-question">{deck[0].question}</span>
+                    <img className="turn-icon" src={turn} onClick={() => { setFlipCard(true) }} alt="turn card icon" />
+                </div>)
+                :
+                (<div className="card-back">
+                    <div className="top-card-back">
+                        <span className="card-back-question">{deck[0].question}</span>
+                        <div className="card-back-counter">0/{deck.length}</div>
+                    </div>
+                    <p className="card-back-text">{deck[0].answer}</p>
+                    {status === false ?
+                        (<div className="buttons-back">
+                            <button onClick={(event) => { handleBorder(event) }} className="button-back black">Aprendi agora</button>
+                            <button onClick={(event) => { handleBorder(event) }} className="button-back red">Não lembrei</button>
+                            <button onClick={(event) => { handleBorder(event) }} className="button-back green">Lembrei com esforço</button>
+                            <button onClick={(event) => { handleBorder(event) }} className="button-back yellow">Zap!</button>
+                        </div>)
+                        :
+                        (<img className="turn-icon" src={turn} alt="turn card icon" />)}
+
+
+                </div>)
+            }
+
+
         </div>
     )
 }

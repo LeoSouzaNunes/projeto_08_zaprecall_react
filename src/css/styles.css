@@ -2,9 +2,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    transition: .4s;
 
     font-family: 'Roboto', sans-serif;
+}
+
+button{
+    border-style: none;
 }
 
 body{
@@ -106,14 +109,14 @@ body{
     line-height: 33px;
 }
 
-.card img{
+.card .turn-icon{
     width: 49px;
     height: 49px;
     
     margin-left: 300px;
 }
 
-.card img:hover{
+.card .turn-icon:hover{
     cursor: pointer;
 }
 
@@ -143,8 +146,6 @@ body{
 }
 
 .card-back-text{
-    width: 294px;
-
     font-style: normal;
     font-weight: normal;
     font-size: 1rem;
@@ -154,10 +155,35 @@ body{
 .buttons-back{
     width: 310px;
     height: 48px;
-
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+.button-back:hover{
+    cursor: pointer;
+}
+
+.black-border{
+   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12),
+   inset 0px 0px 0px 5px #000000;
+}
+
+.red-border{
+    box-shadow: 0px 8px 24px rgba(246, 72, 72, 0.12),
+    inset 0px 0px 0px 5px #F74848;
+}
+
+.green-border{
+   box-shadow: 0px 8px 24px rgba(98, 219, 56, 0.12),
+   inset 0px 0px 0px 5px #62DB38;
+}
+
+.yellow-border{
+   box-shadow: 0px 8px 24px rgba(255, 239, 97, 0.12),
+   inset 0px 0px 0px 5px #FFEF61;
 }
 
 .button-back{
@@ -175,24 +201,20 @@ body{
     background-color: #FFFFFF;
 }
 
-.button-back:hover{
-    cursor: pointer;
+.black{
+    box-shadow: inset 0px 0px 0px 3px #000000;
 }
 
-.black-border{
-    border: 3px solid #000000;
+.red{
+    box-shadow: inset 0px 0px 0px 3px #F74848;
 }
 
-.red-border{
-    border: 3px solid #F74848;
+.green{
+    box-shadow: inset 0px 0px 0px 3px #62DB38;
 }
 
-.green-border{
-    border: 3px solid #62DB38;
-}
-
-.yellow-border{
-    border: 3px solid #FFEF61;
+.yellow{
+    box-shadow: inset 0px 0px 0px 3px #FFEF61;
 }
 
 .result{
