@@ -103,10 +103,11 @@ body{
 }
 
 .card-question{
+    width: 80%;
+
     font-style: normal;
     font-weight: bold;
     font-size: 1.75rem;
-    line-height: 33px;
 }
 
 .card .turn-icon{
@@ -146,10 +147,10 @@ body{
 }
 
 .card-back-text{
+    width: 80%;
     font-style: normal;
     font-weight: normal;
     font-size: 1rem;
-    line-height: 19px;
 }
 
 .buttons-back{

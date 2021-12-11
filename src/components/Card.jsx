@@ -6,6 +6,7 @@ export default function Card() {
     const [flipCard, setFlipCard] = useState(false)
     const [border, setBorder] = useState('')
     const [status, setStatus] = useState(false)
+    const [cardData, setCardData] = useState(0)
 
     function handleBorder(event) {
         let clickedButtonColor = event.target.className.split(' ')
@@ -21,6 +22,13 @@ export default function Card() {
         }
 
         setStatus(true)
+    }
+
+    function handleNextCard() {
+        setFlipCard(false)
+        setBorder('')
+        setStatus(false)
+        setCardData(cardData + 1)
     }
 
     const deck = [{
@@ -54,17 +62,17 @@ export default function Card() {
         <div className={`card ${border}`}>
             {flipCard === false ?
                 (<div className="card-front">
-                    <div className="card-counter">0/{deck.length}</div>
-                    <span className="card-question">{deck[0].question}</span>
+                    <div className="card-counter">{cardData + 1}/{deck.length}</div>
+                    <span className="card-question">{deck[cardData].question}</span>
                     <img className="turn-icon" src={turn} onClick={() => { setFlipCard(true) }} alt="turn card icon" />
                 </div>)
                 :
                 (<div className="card-back">
                     <div className="top-card-back">
-                        <span className="card-back-question">{deck[0].question}</span>
-                        <div className="card-back-counter">0/{deck.length}</div>
+                        <span className="card-back-question">{deck[cardData].question}</span>
+                        <div className="card-back-counter">{cardData + 1}/{deck.length}</div>
                     </div>
-                    <p className="card-back-text">{deck[0].answer}</p>
+                    <p className="card-back-text">{deck[cardData].answer}</p>
                     {status === false ?
                         (<div className="buttons-back">
                             <button onClick={(event) => { handleBorder(event) }} className="button-back black">Aprendi agora</button>
@@ -73,7 +81,7 @@ export default function Card() {
                             <button onClick={(event) => { handleBorder(event) }} className="button-back yellow">Zap!</button>
                         </div>)
                         :
-                        (<img className="turn-icon" src={turn} alt="turn card icon" />)}
+                        (<img className="turn-icon" onClick={handleNextCard} src={turn} alt="turn card icon" />)}
 
 
                 </div>)
