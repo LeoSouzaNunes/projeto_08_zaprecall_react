@@ -1,12 +1,14 @@
 import { useState } from 'react/cjs/react.development'
 import turn from '../assets/turn.png'
 
-export default function Card(props) {
+export default function Card({ setResult, setResultStatus, input }) {
 
     const [flipCard, setFlipCard] = useState(false)
     const [border, setBorder] = useState('')
     const [status, setStatus] = useState(false)
     const [cardData, setCardData] = useState(0)
+    const [zapNumber, setZapNumber] = useState(0)
+    const [redNumber, setRedNumber] = useState(0)
 
     function handleBorder(event) {
         let clickedButtonColor = event.target.className.split(' ')
@@ -14,14 +16,14 @@ export default function Card(props) {
         if (clickedButtonColor[1] === "black") {
             setBorder("black-border");
         } else if (clickedButtonColor[1] === "red") {
-            props.setResultStatus(false)
+            setRedNumber(redNumber + 1)
             setBorder("red-border");
         } else if (clickedButtonColor[1] === "green") {
             setBorder("green-border");
         } else if (clickedButtonColor[1] === "yellow") {
+            setZapNumber(zapNumber + 1)
             setBorder("yellow-border");
         }
-
         setStatus(true)
     }
 
@@ -30,8 +32,19 @@ export default function Card(props) {
         setBorder('')
         setStatus(false)
         if (cardData === deck.length - 1) {
-            props.setResult(true)
-            setCardData(0)
+            if (zapNumber < input || redNumber >= 1) {
+                setRedNumber(0)
+                setZapNumber(0)
+                setResult(true)
+                setCardData(0)
+                setResultStatus(false)
+            } else {
+                setRedNumber(0)
+                setZapNumber(0)
+                setResult(true)
+                setCardData(0)
+                setResultStatus(true)
+            }
         }
         setCardData(cardData + 1)
     }
@@ -64,20 +77,21 @@ export default function Card(props) {
     ]
 
     return (
-        <div className={`card ${border}`}>
+        <div className={`card ${border}`} data-identifier="flashcard">
             {flipCard === false ?
                 (<div className="card-front">
-                    <div className="card-counter">{cardData + 1}/{deck.length}</div>
+                    <div data-identifier="counter" className="card-counter">{cardData + 1}/{deck.length}</div>
                     <span className="card-question">{deck[cardData].question}</span>
-                    <img className="turn-icon" src={turn} onClick={() => { setFlipCard(true) }} alt="turn card icon" />
+                    <img data-identifier="arrow" className="turn-icon" src={turn} onClick={() => { setFlipCard(true) }} alt="turn card icon" />
                 </div>)
                 :
                 (<div className="card-back">
                     <div className="top-card-back">
                         <span className="card-back-question">{deck[cardData].question}</span>
-                        <div className="card-back-counter">{cardData + 1}/{deck.length}</div>
+                        <div data-identifier="counter" className="card-back-counter">{cardData + 1}/{deck.length}</div>
                     </div>
                     <p className="card-back-text">{deck[cardData].answer}</p>
+
                     {status === false ?
                         (<div className="buttons-back">
                             <button onClick={(event) => { handleBorder(event) }} className="button-back black">Aprendi agora</button>
@@ -86,7 +100,8 @@ export default function Card(props) {
                             <button onClick={(event) => { handleBorder(event) }} className="button-back yellow">Zap!</button>
                         </div>)
                         :
-                        (<img className="turn-icon" onClick={handleNextCard} src={turn} alt="turn card icon" />)}
+                        (<img data-identifier="arrow" className="turn-icon" onClick={handleNextCard} src={turn} alt="turn card icon" />)
+                    }
 
 
                 </div>)
