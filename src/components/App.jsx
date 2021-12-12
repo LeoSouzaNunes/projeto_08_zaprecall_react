@@ -13,7 +13,7 @@ export default function App() {
     return (
         <>
             {play === true ?
-                (<Main input={input} />)
+                (<Main input={input} setPlay={setPlay} setInput={setInput} />)
                 :
                 (<Login setInput={setInput} setPlay={setPlay} input={input} />)
             }

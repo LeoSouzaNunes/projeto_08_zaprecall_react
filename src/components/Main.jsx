@@ -2,7 +2,7 @@ import { useState } from 'react/cjs/react.development'
 import Card from './Card'
 import Result from './Result'
 
-export default function Main({ input }) {
+export default function Main({ input, setPlay, setInput }) {
 
     const [result, setResult] = useState(false)
     const [resultStatus, setResultStatus] = useState(true)
@@ -14,7 +14,7 @@ export default function Main({ input }) {
             {result === false ?
                 (<Card setResult={setResult} setResultStatus={setResultStatus} input={input} />)
                 :
-                (<Result resultStatus={resultStatus} />)
+                (<Result resultStatus={resultStatus} setPlay={setPlay} setInput={setInput} />)
             }
 
         </main>
