@@ -2,8 +2,7 @@ import { useState } from 'react/cjs/react.development'
 import Card from './Card'
 import Result from './Result'
 
-export default function Main({ input, setPlay, setInput }) {
-
+export default function Main({ input, setPlay, setInput, decks, pickedDeck, setDecks, decksData }) {
     const [result, setResult] = useState(false)
     const [resultStatus, setResultStatus] = useState(true)
 
@@ -12,9 +11,27 @@ export default function Main({ input, setPlay, setInput }) {
             <header onClick={() => (window.location.reload())} className="logo-corner">
             </header>
             {result === false ?
-                (<Card setResult={setResult} setResultStatus={setResultStatus} input={input} />)
+                (
+                    <>
+                        <h1 className="Deck-title">{pickedDeck[1]}</h1>
+                        <Card
+                            decksData={decksData}
+                            setDecks={setDecks}
+                            decks={decks}
+                            setResult={setResult}
+                            setResultStatus={setResultStatus}
+                            input={input}
+                        />
+                    </>
+                )
                 :
-                (<Result resultStatus={resultStatus} setPlay={setPlay} setInput={setInput} />)
+                (
+                    <Result
+                        resultStatus={resultStatus}
+                        setPlay={setPlay}
+                        setInput={setInput}
+                    />
+                )
             }
 
         </main>
