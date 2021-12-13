@@ -2,7 +2,7 @@ import party from '../assets/party.png'
 import sad from '../assets/sad.png'
 import next from '../assets/next.png'
 
-export default function Result({ setInput, setPlay, resultStatus }) {
+export default function Result({ setInput, setPlay, resultStatus, missedZaps }) {
 
     function handleReset() {
         setInput('')
@@ -23,7 +23,7 @@ export default function Result({ setInput, setPlay, resultStatus }) {
                 :
                 (<>
                     <h1 className="result-title">Putz..<img src={sad} alt="sad emoji" /></h1>
-                    <p className="result-text">Você esqueceu alguns flashcards...<br />Não desanime! Na próxima você consegue!</p>
+                    <p className="result-text">Você esqueceu {missedZaps} flashcards...<br />Não desanime! Na próxima você consegue!</p>
                     <button className="button-join" onClick={handleReset} >
                         Tentar novamente <img src={next} alt="icon with next symbol" />
                     </button>
