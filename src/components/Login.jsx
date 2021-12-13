@@ -1,4 +1,4 @@
-import { useState } from 'react/cjs/react.development'
+import { useState } from 'react'
 import next from '../assets/next.png'
 
 export default function Login({ setPlay, setInput, input, decks, setDecks, setPickedDeck }) {

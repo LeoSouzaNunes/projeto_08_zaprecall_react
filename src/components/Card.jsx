@@ -1,4 +1,4 @@
-import { useState } from 'react/cjs/react.development'
+import { useState } from 'react'
 import turn from '../assets/turn.png'
 
 export default function Card({ setResult, setResultStatus, input, decks, setDecks, decksData, setMissedZaps }) {
