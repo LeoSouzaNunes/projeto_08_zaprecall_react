@@ -28,16 +28,17 @@ export default function Login({ setPlay, setInput, input, decks, setDecks, setPi
             }
         }
 
-        handleDeck()
 
         if (inputValueTest === "" || (Number.isInteger(Number(inputValueTest)) && Number(inputValueTest) >= 1)) {
             if (inputValueTest === "") {
                 setInput(1)
             }
+            handleDeck()
             setPlay(true)
         } else {
             alert('O Input precisa ser um inteiro diferente de zero ou pode deixar ele vazio ;)')
         }
+
 
     }
 
