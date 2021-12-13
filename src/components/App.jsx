@@ -66,7 +66,6 @@ export default function App() {
     const [input, setInput] = useState('')
     const [pickedDeck, setPickedDeck] = useState('')
 
-    console.log(decks)
     return (
         <>
             {play === true ?

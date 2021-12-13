@@ -2,8 +2,6 @@ import { useState } from 'react/cjs/react.development'
 import turn from '../assets/turn.png'
 
 export default function Card({ setResult, setResultStatus, input, decks, setDecks, decksData, setMissedZaps }) {
-    console.log(decks + "Deck dentro do card")
-    console.log(decksData + ' outro')
 
     const [flipCard, setFlipCard] = useState(false)
     const [border, setBorder] = useState('')
